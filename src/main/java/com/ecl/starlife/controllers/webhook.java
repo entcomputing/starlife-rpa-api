@@ -1,10 +1,10 @@
-package com.ecl.stanchart.controllers;
+package com.ecl.starlife.controllers;
 
 
-import com.ecl.stanchart.models.requests.botExtractionRequest;
-import com.ecl.stanchart.models.responses.objectResponse;
-import com.ecl.stanchart.repository.apiDAO;
-import com.ecl.stanchart.utils.Settings;
+import com.ecl.starlife.models.requests.botExtractionRequest;
+import com.ecl.starlife.models.responses.objectResponse;
+import com.ecl.starlife.repository.apiDAO;
+import com.ecl.starlife.utils.Settings;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.svix.exceptions.ApiException;
@@ -22,7 +22,7 @@ import java.nio.charset.Charset;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import org.json.JSONArray;
+
 import org.json.JSONObject;
 
 

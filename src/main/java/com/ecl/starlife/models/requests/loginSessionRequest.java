@@ -1,4 +1,4 @@
-package com.ecl.stanchart.models.requests;
+package com.ecl.starlife.models.requests;
 
 public class loginSessionRequest {
 

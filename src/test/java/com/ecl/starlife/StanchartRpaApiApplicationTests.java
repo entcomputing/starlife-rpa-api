@@ -1,4 +1,4 @@
-package com.ecl.stanchart;
+package com.ecl.starlife;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

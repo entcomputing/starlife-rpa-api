@@ -1,4 +1,4 @@
-package com.ecl.stanchart.repository;
+package com.ecl.starlife.repository;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,7 +96,6 @@ public class apiDAO {
     }
 
 
-    //customer
     //add new customer details
     public int addCustomerDetails(String name, String id_number, String date_of_issue, String date_of_expiry, String account_number, String idType, String cheque_number, String bank_name, String bot_deployment_id, String transaction_id, String teller_id, String platform, String created_by_username, String created_by_email, String created_by_teller_id) {
         int resp = 0;
@@ -112,11 +111,129 @@ public class apiDAO {
         return resp;
     }
 
+    //update customer details
+    public int updateCustomerDetails(String surname, String middleName, String firstName, String dob, String nationality, String gender, String maritalStatus, String occupation, String mobile1, String mobile2, String email, String permanentAddress, String idType, String idNumber, String dateOfIssue, String dateOfExpiry, String proposalNumber, int validated, String validatedBy, int customerID) {
+        int resp = 0;
+        try {
+
+            String query = "UPDATE customers SET SURNAME = ?, MIDDLE_NAME = ?, FIRST_NAME = ?, DOB = ?, NATIONALITY = ?, GENDER = ?, MARITAL_STATUS = ?, OCCUPATION = ?, MOBILE1 = ?, MOBILE2 = ?, Email = ?, PERMANENT_ADDRESS = ?, ID_TYPES = ?, ID_NUMBER = ?, DATE_OF_ISSUE = ?, DATE_OF_EXPIRY = ?, PROPOSAL_NUMBER = ?, VALIDATED = ?, VALIDATED_BY = ?  WHERE CUST_ID = ? ";
+            resp = template.update(query, surname, middleName, firstName, dob, nationality, gender, maritalStatus, occupation, mobile1, mobile2, email, permanentAddress, idType, idNumber, dateOfIssue, dateOfExpiry, proposalNumber, validated, validatedBy, customerID);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return resp;
+    }
+
+
+    public int addBeneficiaryDetails(String surname, String othernames, String dob, String relationship, String percentage, String contact, int customerID) {
+        int resp = 0;
+        try {
+
+            String query = "INSERT INTO beneficiary (Beneficiary_SURNAME, Beneficiary_OTHERNAMES, Beneficiary_DOB, Beneficiary_RELATIONSHIP, Beneficiary_PERCENTAGE, Beneficiary_CONTACT_NO, CUST_ID) values (?,?,?,?,?,?,?)";
+            resp = template.update(query, surname, othernames, dob, relationship, percentage, contact, customerID);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return resp;
+    }
+
+    public int updateBeneficiaryDetails(String surname, String othernames, String dob, String relationship, String percentage, String contact, int validated, String validatedBy, int beneficiaryID) {
+        int resp = 0;
+        try {
+
+            String query = "UPDATE beneficiary SET Beneficiary_SURNAME = ?, Beneficiary_OTHERNAMES = ?, Beneficiary_DOB = ?, Beneficiary_RELATIONSHIP = ?, Beneficiary_PERCENTAGE = ?, Beneficiary_CONTACT_NO = ?, VALIDATED = ?, VALIDATED_BY = ?  WHERE BENEF_ID = ? ";
+            resp = template.update(query, surname, othernames, dob, relationship, percentage, contact, validated, validatedBy, beneficiaryID);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return resp;
+    }
+
+    public int deleteBeneficiaryDetails(int beneficiaryID) {
+        int resp = 0;
+        try {
+
+            String query = "DELETE FROM beneficiary WHERE BENEF_ID = ? ";
+            resp = template.update(query, beneficiaryID);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return resp;
+    }
+
+
+
     //fetch customer details
     public List fetchAllCustomers() {
 
-            String query = "SELECT * FROM customer ORDER BY DATE_CREATED DESC";
+            String query = "SELECT customers.*, products.PRODUCT_NAME " +
+                            "FROM customers, products " +
+                            "WHERE customers.VALIDATED = 0 " +
+                            "AND customers.CUST_ID = products.CUST_ID " +
+                            "ORDER BY DATE_CREATED DESC";
             List results = template.queryForList(query);
+
+        return results;
+    }
+
+    //fetch account holder details
+    public List fetchAccountHolders(int customerID) {
+
+        String query = "SELECT * FROM acct_holder WHERE CUST_ID = ? ORDER BY DATE_CREATED DESC";
+        List results = template.queryForList(query, customerID);
+
+        return results;
+    }
+
+    //fetch cover details
+    public List fetchCoverInfo(int customerID) {
+
+        String query = "SELECT * FROM covers_details WHERE CUST_ID = ? ORDER BY DATE_CREATED DESC";
+        List results = template.queryForList(query, customerID);
+
+        return results;
+    }
+
+    //fetch payment details
+    public List fetchPaymentInfo(int customerID) {
+
+        String query = "SELECT * FROM payment_details WHERE CUST_ID = ? ORDER BY DATE_CREATED DESC";
+        List results = template.queryForList(query, customerID);
+
+        return results;
+    }
+
+    //fetch document details
+    public List fetchDocumentInfo(int customerID) {
+
+        String query = "SELECT * FROM documents WHERE CUST_ID = ? ORDER BY DATE_CREATED DESC";
+        List results = template.queryForList(query, customerID);
+
+        return results;
+    }
+
+    //fetch product details
+    public List fetchProductInfo(int customerID) {
+
+        String query = "SELECT * FROM products WHERE CUST_ID = ? ORDER BY DATE_CREATED DESC";
+        List results = template.queryForList(query, customerID);
+
+        return results;
+    }
+
+    //fetch product details
+    public List fetchBeneficiaryInfo(int customerID) {
+
+        String query = "SELECT * FROM beneficiary WHERE CUST_ID = ? ORDER BY DATE_CREATED DESC";
+        List results = template.queryForList(query, customerID);
 
         return results;
     }
@@ -124,7 +241,7 @@ public class apiDAO {
 
     //auditService
     //customer entry form
-    public int customerEntryFormAudit(String username, String email, String eventType, String eventDesc, String execDate, String execTime, String eventResults, String transactionID, String usedRole, String usedPriviledge, String requestEndpoint, String requestClient, String ipAddress, String hostname) {
+    public int auditLogEntry(String username, String email, String eventType, String eventDesc, String execDate, String execTime, String eventResults, String transactionID, String usedRole, String usedPriviledge, String requestEndpoint, String requestClient, String ipAddress, String hostname) {
         int resp = 0;
         try {
 
@@ -144,6 +261,14 @@ public class apiDAO {
 
         String query = "SELECT USERNAME, EMAIL, EVENT_TYPE, EVENT_DESC, EXEC_DATE, EXEC_TIME, EVENT_RESULT, TRANSACTION_ID, USED_ROLE, USED_PRIVILEDGE, SERVICE_REQUEST_ENDPOINT, SERVICE_REQUEST_CLIENT, IP_ADDRESS, HOSTNAME FROM audit_trail ORDER BY DATE_CREATED DESC";
         List results = template.queryForList(query);
+
+        return results;
+    }
+
+    public List fetchUserByEmail(String email) {
+
+        String query = "SELECT * FROM users WHERE EMAIL = ?";
+        List results = template.queryForList(query, email);
 
         return results;
     }

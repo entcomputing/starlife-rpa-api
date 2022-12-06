@@ -1,7 +1,7 @@
 // Decompiled by DJ v3.9.9.91 Copyright 2005 Atanas Neshkov  Date: 12/14/2006 6:47:16 PM
 // Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
 // Decompiler options: packimports(3) fieldsfirst lnc 
-package com.ecl.stanchart.utils;
+package com.ecl.starlife.utils;
 
 import java.io.*;
 import java.util.*;

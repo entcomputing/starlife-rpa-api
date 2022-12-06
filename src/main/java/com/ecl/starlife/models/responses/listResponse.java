@@ -1,27 +1,20 @@
-package com.ecl.stanchart.models.responses;
+package com.ecl.starlife.models.responses;
 
-public class objectResponse {
-	public String responseCode;
-	public String responseMessage;
-	public int count;
-	public Object data;
+import java.util.List;
+
+public class listResponse {
+	
+	private String responseMessage;
+	private String responseCode;
+	private List data;
 
 
 
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-
-	public Object getData() {
+	public List getData() {
 		return data;
 	}
 
-	public void setData(Object data) {
+	public void setData(List data) {
 		this.data = data;
 	}
 
@@ -40,5 +33,8 @@ public class objectResponse {
 	public void setResponseMessage(String responseMessage) {
 		this.responseMessage = responseMessage;
 	}
+	 
+	 
+     
 
 }

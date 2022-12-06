@@ -1,6 +1,6 @@
-package com.ecl.stanchart.services;
+package com.ecl.starlife.services;
 
-import com.ecl.stanchart.repository.apiDAO;
+import com.ecl.starlife.repository.apiDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public class auditService {
 
 
 
-    public boolean customerEntryForm(String username, String email, String requestEndPoint, String requestClient, String ipAddress, String hostname, String transactionID, String eventResult){
+    public boolean auditLog(String username, String email, String requestEndPoint, String requestClient, String ipAddress, String hostname, String transactionID, String eventType, String eventDesc, String eventResult){
 
         //get current date
         Date currentDate = Calendar.getInstance().getTime();
@@ -39,10 +39,8 @@ public class auditService {
         DateFormat currentTimeFormat = new SimpleDateFormat("hh:mm a");
         execTime = currentTimeFormat.format(currentTime);
 
-        eventType = "Object Manipulation Events";
-        eventDesc = "Created new customer entry details for scanned documents";
 
-        int result = dao.customerEntryFormAudit(username, email, eventType, eventDesc, execDate, execTime, eventResult, transactionID, userRole, usedPriviledge, requestEndPoint, requestClient, ipAddress, hostname);
+        int result = dao.auditLogEntry(username, email, eventType, eventDesc, execDate, execTime, eventResult, transactionID, userRole, usedPriviledge, requestEndPoint, requestClient, ipAddress, hostname);
         if (result > 0) {
             return true;
         }else{

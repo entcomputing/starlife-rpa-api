@@ -1,19 +1,15 @@
-package com.ecl.stanchart.controllers;
+package com.ecl.starlife.controllers;
 
-import com.ecl.stanchart.models.requests.botExtractionRequest;
-import com.ecl.stanchart.models.responses.objectResponse;
-import com.ecl.stanchart.repository.apiDAO;
-import com.ecl.stanchart.utils.Settings;
+import com.ecl.starlife.models.requests.botExtractionRequest;
+import com.ecl.starlife.models.responses.objectResponse;
+import com.ecl.starlife.repository.apiDAO;
+import com.ecl.starlife.utils.Settings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)

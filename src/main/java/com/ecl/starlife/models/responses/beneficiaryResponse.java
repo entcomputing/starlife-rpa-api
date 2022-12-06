@@ -1,22 +1,8 @@
-package com.ecl.stanchart.models.responses;
+package com.ecl.starlife.models.responses;
 
-import java.util.List;
-
-public class listResponse {
-	
-	private String responseMessage;
-	private String responseCode;
-	private List data;
-
-
-
-	public List getData() {
-		return data;
-	}
-
-	public void setData(List data) {
-		this.data = data;
-	}
+public class beneficiaryResponse {
+	public String responseCode;
+	public String responseMessage;
 
 	public String getResponseCode() {
 		return responseCode;
@@ -33,8 +19,4 @@ public class listResponse {
 	public void setResponseMessage(String responseMessage) {
 		this.responseMessage = responseMessage;
 	}
-	 
-	 
-     
-
 }

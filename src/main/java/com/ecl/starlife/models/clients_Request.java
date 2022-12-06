@@ -1,4 +1,4 @@
-package com.ecl.stanchart.models;
+package com.ecl.starlife.models;
 
 import java.util.Date;
 

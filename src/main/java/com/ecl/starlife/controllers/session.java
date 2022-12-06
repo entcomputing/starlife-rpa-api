@@ -1,11 +1,11 @@
-package com.ecl.stanchart.controllers;
+package com.ecl.starlife.controllers;
 
 
-import com.ecl.stanchart.models.clients_Request;
-import com.ecl.stanchart.models.requests.loginSessionRequest;
-import com.ecl.stanchart.models.responses.objectResponse;
-import com.ecl.stanchart.repository.apiDAO;
-import com.ecl.stanchart.utils.Settings;
+import com.ecl.starlife.models.clients_Request;
+import com.ecl.starlife.models.requests.loginSessionRequest;
+import com.ecl.starlife.models.responses.objectResponse;
+import com.ecl.starlife.repository.apiDAO;
+import com.ecl.starlife.utils.Settings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
