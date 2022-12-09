@@ -11,7 +11,16 @@ public class objectResponse {
 	public Object documentInfo;
 	public Object productInfo;
 	public Object beneficiaryInfo;
+	public Object trusteeInfo;
 
+
+	public Object getTrusteeInfo() {
+		return trusteeInfo;
+	}
+
+	public void setTrusteeInfo(Object trusteeInfo) {
+		this.trusteeInfo = trusteeInfo;
+	}
 
 	public Object getBeneficiaryInfo() {
 		return beneficiaryInfo;

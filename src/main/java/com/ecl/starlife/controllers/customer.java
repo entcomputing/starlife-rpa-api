@@ -140,7 +140,7 @@ public class customer {
 
         try {
 
-            List data = dao.fetchAllCustomers();
+            List data = dao.fetchAllCustomers(req.getRequestBy());
             int count = data.size();
 
             resp.setResponseCode(Settings.getInstance("").getProperty("SUCCESS_CODE"));

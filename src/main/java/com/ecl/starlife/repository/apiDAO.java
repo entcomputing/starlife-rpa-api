@@ -172,14 +172,15 @@ public class apiDAO {
 
 
     //fetch customer details
-    public List fetchAllCustomers() {
+    public List fetchAllCustomers(String requestBy) {
 
             String query = "SELECT customers.*, products.PRODUCT_NAME " +
                             "FROM customers, products " +
                             "WHERE customers.VALIDATED = 0 " +
+                            "AND customers.EMP_EMAIL = ? " +
                             "AND customers.CUST_ID = products.CUST_ID " +
                             "ORDER BY DATE_CREATED DESC";
-            List results = template.queryForList(query);
+            List results = template.queryForList(query, requestBy);
 
         return results;
     }
@@ -229,10 +230,18 @@ public class apiDAO {
         return results;
     }
 
-    //fetch product details
+
     public List fetchBeneficiaryInfo(int customerID) {
 
         String query = "SELECT * FROM beneficiary WHERE CUST_ID = ? ORDER BY DATE_CREATED DESC";
+        List results = template.queryForList(query, customerID);
+
+        return results;
+    }
+
+    public List fetchTrusteeInfo(int customerID) {
+
+        String query = "SELECT * FROM trustees WHERE CUST_ID = ? ORDER BY DATE_CREATED DESC";
         List results = template.queryForList(query, customerID);
 
         return results;

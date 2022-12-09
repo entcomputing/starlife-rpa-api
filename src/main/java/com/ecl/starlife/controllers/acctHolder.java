@@ -144,6 +144,7 @@ public class acctHolder {
             List documentInfo = dao.fetchDocumentInfo(req.getCustomerID());
             List productInfo = dao.fetchProductInfo(req.getCustomerID());
             List fetchBeneficiaryInfo = dao.fetchBeneficiaryInfo(req.getCustomerID());
+            List fetchTrusteeInfo = dao.fetchTrusteeInfo(req.getCustomerID());
 
             int count = accountHolderInfo.size();
             if(count > 0){
@@ -183,6 +184,9 @@ public class acctHolder {
             }
             if(fetchBeneficiaryInfo.size() > 0){
                 resp.setBeneficiaryInfo(fetchBeneficiaryInfo);
+            }
+            if(fetchTrusteeInfo.size() > 0){
+                resp.setTrusteeInfo(fetchTrusteeInfo.get(0));
             }
 
 
