@@ -9,6 +9,8 @@ public class beneficiaryRequest {
     private String beneficiaryRelationship;
     private String beneficiaryPercentage;
     private String beneficiaryContact;
+    private String beneficiaryGender;
+    private int wbnfCode;
     private int customerID;
     private int validated;
     private String validatedBy;
@@ -17,6 +19,23 @@ public class beneficiaryRequest {
     private String requestIP;
     private String requestChannel;
 
+
+
+    public String getBeneficiaryGender() {
+        return beneficiaryGender;
+    }
+
+    public void setBeneficiaryGender(String beneficiaryGender) {
+        this.beneficiaryGender = beneficiaryGender;
+    }
+
+    public int getWbnfCode() {
+        return wbnfCode;
+    }
+
+    public void setWbnfCode(int wbnfCode) {
+        this.wbnfCode = wbnfCode;
+    }
 
     public int getBeneficiaryID() {
         return beneficiaryID;

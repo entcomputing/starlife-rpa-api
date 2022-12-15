@@ -89,7 +89,7 @@ public class customer {
             log.info("surname->>>" + req.getSurname());
             log.info("customerID->>>" + req.getCustomerID());
 
-            int data = dao.updateCustomerDetails(req.getSurname(), req.getMiddleName(), req.getFirstName(), req.getDob(), req.getNationality(), req.getGender(), req.getMaritalStatus(), req.getOccupation(), req.getMobile1(), req.getMobile2(), req.getEmail(), req.getPermanentAddress(), req.getIdType(), req.getIdNumber(), req.getDateOfIssue(), req.getDateOfExpiry(), req.getProposalNumber(), req.getValidated(), req.getValidatedBy(), req.getCustomerID());
+            int data = dao.updateCustomerDetails(req.getSurname(), req.getMiddleName(), req.getFirstName(), req.getDob(), req.getNationality(), req.getGender(), req.getMaritalStatus(), req.getOccupation(), req.getMobile1(), req.getMobile2(), req.getEmail(), req.getPermanentAddress(), req.getIdType(), req.getIdNumber(), req.getDateOfIssue(), req.getDateOfExpiry(), req.getProposalNumber(), req.getWebQuoteCode(), req.getValidated(), req.getValidatedBy(), req.getCustomerID());
 
             if (data > 0) {
 

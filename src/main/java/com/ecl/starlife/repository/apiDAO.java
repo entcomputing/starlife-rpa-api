@@ -112,12 +112,12 @@ public class apiDAO {
     }
 
     //update customer details
-    public int updateCustomerDetails(String surname, String middleName, String firstName, String dob, String nationality, String gender, String maritalStatus, String occupation, String mobile1, String mobile2, String email, String permanentAddress, String idType, String idNumber, String dateOfIssue, String dateOfExpiry, String proposalNumber, int validated, String validatedBy, int customerID) {
+    public int updateCustomerDetails(String surname, String middleName, String firstName, String dob, String nationality, String gender, String maritalStatus, String occupation, String mobile1, String mobile2, String email, String permanentAddress, String idType, String idNumber, String dateOfIssue, String dateOfExpiry, String proposalNumber, String webQuoteCode, int validated, String validatedBy, int customerID) {
         int resp = 0;
         try {
 
-            String query = "UPDATE customers SET SURNAME = ?, MIDDLE_NAME = ?, FIRST_NAME = ?, DOB = ?, NATIONALITY = ?, GENDER = ?, MARITAL_STATUS = ?, OCCUPATION = ?, MOBILE1 = ?, MOBILE2 = ?, Email = ?, PERMANENT_ADDRESS = ?, ID_TYPES = ?, ID_NUMBER = ?, DATE_OF_ISSUE = ?, DATE_OF_EXPIRY = ?, PROPOSAL_NUMBER = ?, VALIDATED = ?, VALIDATED_BY = ?  WHERE CUST_ID = ? ";
-            resp = template.update(query, surname, middleName, firstName, dob, nationality, gender, maritalStatus, occupation, mobile1, mobile2, email, permanentAddress, idType, idNumber, dateOfIssue, dateOfExpiry, proposalNumber, validated, validatedBy, customerID);
+            String query = "UPDATE customers SET SURNAME = ?, MIDDLE_NAME = ?, FIRST_NAME = ?, DOB = ?, NATIONALITY = ?, GENDER = ?, MARITAL_STATUS = ?, OCCUPATION = ?, MOBILE1 = ?, MOBILE2 = ?, Email = ?, PERMANENT_ADDRESS = ?, ID_TYPES = ?, ID_NUMBER = ?, DATE_OF_ISSUE = ?, DATE_OF_EXPIRY = ?, PROPOSAL_NUMBER = ?, webQuoteCode = ?, VALIDATED = ?, VALIDATED_BY = ?  WHERE CUST_ID = ? ";
+            resp = template.update(query, surname, middleName, firstName, dob, nationality, gender, maritalStatus, occupation, mobile1, mobile2, email, permanentAddress, idType, idNumber, dateOfIssue, dateOfExpiry, proposalNumber, webQuoteCode, validated, validatedBy, customerID);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -127,12 +127,12 @@ public class apiDAO {
     }
 
 
-    public int addBeneficiaryDetails(String surname, String othernames, String dob, String relationship, String percentage, String contact, int customerID) {
+    public int addBeneficiaryDetails(int wbnfCode, String surname, String othernames, String dob, String relationship, String percentage, String contact, String gender, int customerID, int validated, String validatedBy) {
         int resp = 0;
         try {
 
-            String query = "INSERT INTO beneficiary (Beneficiary_SURNAME, Beneficiary_OTHERNAMES, Beneficiary_DOB, Beneficiary_RELATIONSHIP, Beneficiary_PERCENTAGE, Beneficiary_CONTACT_NO, CUST_ID) values (?,?,?,?,?,?,?)";
-            resp = template.update(query, surname, othernames, dob, relationship, percentage, contact, customerID);
+            String query = "INSERT INTO beneficiary (wbnfCode, Beneficiary_SURNAME, Beneficiary_OTHERNAMES, Beneficiary_DOB, Beneficiary_RELATIONSHIP, Beneficiary_PERCENTAGE, Beneficiary_CONTACT_NO, Beneficiary_GENDER, CUST_ID, VALIDATED, VALIDATED_BY) values (?,?,?,?,?,?,?,?,?,?,?)";
+            resp = template.update(query, wbnfCode, surname, othernames, dob, relationship, percentage, contact, gender, customerID, validated, validatedBy);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -141,12 +141,12 @@ public class apiDAO {
         return resp;
     }
 
-    public int updateBeneficiaryDetails(String surname, String othernames, String dob, String relationship, String percentage, String contact, int validated, String validatedBy, int beneficiaryID) {
+    public int updateBeneficiaryDetails(int wbnfCode, String surname, String othernames, String dob, String relationship, String percentage, String contact, String gender, int validated, String validatedBy, int beneficiaryID) {
         int resp = 0;
         try {
 
-            String query = "UPDATE beneficiary SET Beneficiary_SURNAME = ?, Beneficiary_OTHERNAMES = ?, Beneficiary_DOB = ?, Beneficiary_RELATIONSHIP = ?, Beneficiary_PERCENTAGE = ?, Beneficiary_CONTACT_NO = ?, VALIDATED = ?, VALIDATED_BY = ?  WHERE BENEF_ID = ? ";
-            resp = template.update(query, surname, othernames, dob, relationship, percentage, contact, validated, validatedBy, beneficiaryID);
+            String query = "UPDATE beneficiary SET wbnfCode = ?, Beneficiary_SURNAME = ?, Beneficiary_OTHERNAMES = ?, Beneficiary_DOB = ?, Beneficiary_RELATIONSHIP = ?, Beneficiary_PERCENTAGE = ?, Beneficiary_CONTACT_NO = ?, Beneficiary_GENDER = ?, VALIDATED = ?, VALIDATED_BY = ?  WHERE BENEF_ID = ? ";
+            resp = template.update(query, wbnfCode, surname, othernames, dob, relationship, percentage, contact, gender, validated, validatedBy, beneficiaryID);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -280,6 +280,20 @@ public class apiDAO {
         List results = template.queryForList(query, email);
 
         return results;
+    }
+
+    public int changePassword(String newPassword, String userEmail) {
+        int resp = 0;
+        try {
+
+            String query = "UPDATE users SET PASSWORD = ? WHERE EMAIL = ? ";
+            resp = template.update(query, newPassword, userEmail);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return resp;
     }
 
 

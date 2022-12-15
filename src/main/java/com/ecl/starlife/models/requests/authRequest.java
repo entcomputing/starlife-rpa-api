@@ -4,11 +4,29 @@ public class authRequest {
 
     private String email;
     private String password;
+    private String currentPassword;
+    private String newPassword;
 
     private String requestBy;
     private String requestIP;
     private String requestChannel;
 
+
+    public String getCurrentPassword() {
+        return currentPassword;
+    }
+
+    public void setCurrentPassword(String currentPassword) {
+        this.currentPassword = currentPassword;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
 
     public String getEmail() {
         return email;

@@ -44,7 +44,7 @@ public class beneficiary {
 
         try {
 
-            int data = dao.addBeneficiaryDetails(req.getBeneficiarySurname(), req.getBeneficiaryOthernames(), req.getBeneficiaryDOB(), req.getBeneficiaryRelationship(), req.getBeneficiaryPercentage(), req.getBeneficiaryContact(), req.getCustomerID());
+            int data = dao.addBeneficiaryDetails(req.getWbnfCode(), req.getBeneficiarySurname(), req.getBeneficiaryOthernames(), req.getBeneficiaryDOB(), req.getBeneficiaryRelationship(), req.getBeneficiaryPercentage(), req.getBeneficiaryContact(), req.getBeneficiaryGender(), req.getCustomerID(), req.getValidated(), req.getValidatedBy());
 
             if (data > 0) {
 
@@ -94,7 +94,7 @@ public class beneficiary {
 
         try {
 
-            int data = dao.updateBeneficiaryDetails(req.getBeneficiarySurname(), req.getBeneficiaryOthernames(), req.getBeneficiaryDOB(), req.getBeneficiaryRelationship(), req.getBeneficiaryPercentage(), req.getBeneficiaryContact(), req.getValidated(), req.getValidatedBy(), req.getBeneficiaryID());
+            int data = dao.updateBeneficiaryDetails(req.getWbnfCode(), req.getBeneficiarySurname(), req.getBeneficiaryOthernames(), req.getBeneficiaryDOB(), req.getBeneficiaryRelationship(), req.getBeneficiaryPercentage(), req.getBeneficiaryContact(), req.getBeneficiaryGender(), req.getValidated(), req.getValidatedBy(), req.getBeneficiaryID());
 
             if (data > 0) {
 
@@ -159,7 +159,7 @@ public class beneficiary {
             } else {
 
                 resp.setResponseCode(Settings.getInstance("").getProperty("FAIL_CUSTOMER_CODE"));
-                resp.setResponseMessage("Failed to deleted beneficiary details");
+                resp.setResponseMessage("Failed to delete beneficiary details");
 
                 //log activity to audit trail
                 audit.auditLog(req.getRequestBy(), req.getRequestBy(), "/beneficiary/delete", req.getRequestChannel(), req.getRequestIP(), "", "",eventType, eventDesc, "FAILED");

@@ -20,6 +20,7 @@ public class customerRequest {
     private String dateOfIssue;
     private String dateOfExpiry;
     private String proposalNumber;
+    private String webQuoteCode;
     private int validated;
     private String validatedBy;
 
@@ -29,6 +30,14 @@ public class customerRequest {
 
 
 
+
+    public String getWebQuoteCode() {
+        return webQuoteCode;
+    }
+
+    public void setWebQuoteCode(String webQuoteCode) {
+        this.webQuoteCode = webQuoteCode;
+    }
 
     public String getProposalNumber() {
         return proposalNumber;
