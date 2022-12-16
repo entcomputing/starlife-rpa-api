@@ -152,7 +152,6 @@ public class customer {
             audit.auditLog(req.getRequestBy(), req.getRequestBy(), "/customer/fetch", req.getRequestChannel(), req.getRequestIP(), "", "",eventType, eventDesc, "SUCCESS");
 
 
-
         } catch (Exception ex) {
             ex.printStackTrace();
 
