@@ -74,14 +74,14 @@ public class auth {
                     for (int i = 0; i < ja.length(); i++) {
                         jo = ja.getJSONObject(i);
 
-                        currentPassword = jo.getString("PASSWORD");
-                        userID = jo.getString("USER_ID");
-                        email = jo.getString("EMAIL");
-                        phone = jo.getString("PHONE");
-                        firstName = jo.getString("FIRST_NAME");
-                        lastName = jo.getString("LAST_NAME");
-                        branch = jo.getString("BRANCH");
-                        role = jo.getString("ROLE");
+                        if(jo.has("PASSWORD")) {currentPassword = jo.getString("PASSWORD");}
+                        if(jo.has("USER_ID")) {userID = jo.getString("USER_ID");}
+                        if(jo.has("EMAIL")) {email = jo.getString("EMAIL");}
+                        if(jo.has("PHONE")) {phone = jo.getString("PHONE");}
+                        if(jo.has("FIRST_NAME")) {firstName = jo.getString("FIRST_NAME");}
+                        if(jo.has("LAST_NAME")) {lastName = jo.getString("LAST_NAME");}
+                        if(jo.has("BRANCH")){ branch = jo.getString("BRANCH");}
+                        if(jo.has("ROLE")){  role = jo.getString("ROLE");}
 
                     }
 

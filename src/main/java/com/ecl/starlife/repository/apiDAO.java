@@ -176,7 +176,8 @@ public class apiDAO {
 
             String query = "SELECT customers.*, products.PRODUCT_NAME " +
                             "FROM customers, products " +
-                            "WHERE customers.EMP_EMAIL = ? " +
+                            "WHERE customers.VALIDATED = 0 " +
+                            "AND customers.EMP_EMAIL = ? " +
                             "AND customers.CUST_ID = products.CUST_ID " +
                             "ORDER BY DATE_CREATED DESC";
             List results = template.queryForList(query, requestBy);
