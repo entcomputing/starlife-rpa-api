@@ -296,6 +296,20 @@ public class apiDAO {
         return resp;
     }
 
+    public int updateOTP(String OTP, String userEmail) {
+        int resp = 0;
+        try {
+
+            String query = "UPDATE users SET OTP = ? WHERE EMAIL = ? ";
+            resp = template.update(query, OTP, userEmail);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return resp;
+    }
+
 
 
 
