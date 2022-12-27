@@ -310,6 +310,20 @@ public class apiDAO {
         return resp;
     }
 
+    public int addIncidentReport(int customerID, String webProdName, String webProdCode, String clntCode, String webClntCode, String webQuoteCode, String subject, String message, String reportedBy) {
+        int resp = 0;
+        try {
+
+            String query = "INSERT INTO incident_report (CUST_ID, webProdName, webProdCode, clntCode, webClntCode, webQuoteCode, subject, message, reportedBy) values (?,?,?,?,?,?,?,?,?)";
+            resp = template.update(query, customerID, webProdName, webProdCode, clntCode, webClntCode, webQuoteCode, subject, message, reportedBy);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return resp;
+    }
+
 
 
 
